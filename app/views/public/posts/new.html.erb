@@ -1,2 +1,25 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<h4>新規投稿</h4>
+
+<%= form_with model: @post, local:true, method: :post do |f| %>
+  <table class="table table-borderless">
+
+    <tr class="row">
+      <th class="col-2 offset-1">写真・動画を選択</th>
+      <td>
+        <%= f.file_field :image, accept: "image/*" %>
+      </td>
+    </tr>
+
+    <tr class="row">
+      <th class="col-2 offset-1">キャプション</th>
+      <td>
+        <%= f.text_area :introduction %>
+      </td>
+    </tr>
+
+    <tr class="row">
+      <th class="col-4"></th>
+      <td><%= f.submit '投稿', class: "btn btn-success" %></td>
+    </tr>
+  </table>
+<% end %>

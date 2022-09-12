@@ -19,8 +19,49 @@
       <div class="d-flex flex-wrap bd-highlight mb-3">
 
         <div class="mr-auto pl-5 bd-highlight">
-              LOGO<%#= image_tag('', size:"100x80") %>
+              <h1>LOGO</h1>
         </div>
+
+        <% if admin_signed_in? %>
+
+          <div class="p-2 bd-highlight">
+            <%= link_to destroy_admin_session_path,method: :delete, class: "nav-link active" do %>
+              <button type="button" class="btn btn-outline-secondary">ログアウト</button>
+            <% end %>
+          </div>
+
+        <% elsif user_signed_in? %>
+          <div>
+            ようこそ<%= current_user.name %>さん！
+          </div>
+
+          <div class="center-block pt-5 pr-5">
+            <%= link_to "＋", new_post_path, class: "btn btn-light rounded-circle.p-0 width:2rem; height:2rem;" %>
+          </div>
+
+          <%= link_to "user", user_path(current_user) %>
+
+          <div class="p-2 bd-highlight">
+            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link active" do %>
+              <button type="button" class="btn btn-outline-secondary">ログアウト</button>
+            <% end %>
+          </div>
+
+        <% else %>
+
+          <div class="p-2 bd-highlight">
+            <%= link_to new_user_registration_path, class: "nav-link active" do %>
+              <button type="button" class="btn btn-success">新規登録</button>
+            <% end %>
+          </div>
+
+          <div class="p-2 bd-highlight">
+            <%= link_to user_session_path, class: "nav-link active" do %>
+              <button type="button" class="btn btn-primary">ログイン</button>
+            <% end %>
+          </div>
+
+        <% end %>
 
     </header>
 

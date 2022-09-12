@@ -1,2 +1,26 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<h4>投稿編集</h4>
+
+<%= form_with model: @post, local:true, method: :patch do |f| %>
+  <table class="table table-borderless">
+
+    <tr class="row">
+      <th class="col-2 offset-1">写真・動画を選択</th>
+      <td>
+        <%= f.file_field :image, accept: "image/*" %>
+      </td>
+    </tr>
+
+    <tr class="row">
+      <th class="col-2 offset-1">キャプション</th>
+      <td>
+        <%= f.text_area :introduction %>
+      </td>
+    </tr>
+
+    <tr class="row">
+      <th class="col-4"></th>
+      <td><%= f.submit '更新', class: "btn btn-success" %></td>
+      <td><%= link_to "消去する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
+    </tr>
+  </table>
+<% end %>

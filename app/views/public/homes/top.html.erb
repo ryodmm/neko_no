@@ -1,2 +1,23 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+猫の集会所へようこそ！</br>
+ここは猫好きが集まる猫好きのための集会所。</br>
+あなたも猫の集会に参加しませんか？
+
+<div class="p-2 bd-highlight">
+  <%= link_to new_user_registration_path, class: "nav-link active" do %>
+    <button type="button" class="btn btn-success">初めての方はこちら</button>
+  <% end %>
+</div>
+
+<div class="p-2 bd-highlight">
+  <%= link_to user_session_path, class: "nav-link active" do %>
+    <button type="button" class="btn btn-primary">会員のかたはこちら</button>
+  <% end %>
+</div>
+
+<div class="p-2 bd-highlight">
+  <%= link_to users_guest_sign_in_path, class: "nav-link active" do %>
+    <button type="button" class="btn btn-secondary">ゲストとして参加</button>
+  <% end %>
+</div>
+
+<%#= link_to 'ゲストとして参加', users_guest_sign_in_path, method: :post %>

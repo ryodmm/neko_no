@@ -1,0 +1,6 @@
+<%= render 'follow_list', users: @users %>
+
+<%= link_to "フォロー中", user_followings_path(@user.id) %>
+<p class="text-decoration-underline">フォロワー</p>
+
+<%= link_to "戻る", user_path(current_user), class: "btn btn-primary" %>

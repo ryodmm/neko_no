@@ -1,5 +1,6 @@
-<% @posts.each do |post| %>
-  <table>
+いいね一覧
+<% @favorite_posts.each do |post|%>
+<table>
     <tr>
       <td>
         <%= link_to post_path(post.id) do %>

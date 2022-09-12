@@ -1,2 +1,58 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<td>
+  <%= link_to user_path(@post.user) do %>
+  <%= image_tag @post.user.get_profile_image(70,70) %>
+  <% end %>
+</td>
+<td><%= @post.user.name %></td>
+<td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+<td><%= @post.introduction %></td>
+<td>
+  <%= image_tag @post.image, size: "150x100" %>
+  <% if current_user.id == @post.user_id %>
+    <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
+  <% end %>
+</td>
+
+<% if @post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :delete do %>
+        ♥<%= @post.favorites.count %>
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :post do %>
+        ♡<%= @post.favorites.count %>
+      <% end %>
+    </p>
+  <% end %>
+
+<div>
+  <%= form_with model: [@post, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントを追加" %>
+    <%= f.submit "投稿する" %>
+  <% end %>
+</div>
+
+<div>
+  <% @post.post_comments.each do |post_comment| %>
+    <table>
+      <td>
+        <%= link_to user_path(post_comment.user) do %>
+        <%= image_tag post_comment.user.get_profile_image(30,30) %>
+        <% end %>
+      </td>
+      <td>
+        <%= post_comment.user.name %> <%= post_comment.comment %><br>
+        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+      </td>
+      <td>
+        <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+        <% end %>
+      </td>
+    </table>
+  <% end %>
+</div>
+
+<%= link_to "いいねした投稿", favorites_user_path(current_user)  %><%# ログインしているユーザのいいね一覧なので、current_userになる %>

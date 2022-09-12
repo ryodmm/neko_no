@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="d-flex justify-content-center pt-5">
+    <h3><%= image_tag @user.get_profile_image(70,70) %> <%= @user.name %>さん、本当に退会しますか？</h3>
+  </div>
+   <div class="d-flex justify-content-center p-3">
+  <p style="text-align: center">
+    退会するとフォローやいいねなどの機能が使えなくなります。</br>
+    <strong>再度ご利用をいただく場合には、新規登録のお手続きが必要になります。</strong>
+  </p>
+   </div>
+  <div class="d-flex justify-content-center">
+    <div class="p-2"><%= link_to "退会しない", user_path(current_user), class: "btn btn-primary" %></div>
+    <div class="p-2"><%= link_to "退会する", withdrawal_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger" %></div>
+  </div>
+</div>
