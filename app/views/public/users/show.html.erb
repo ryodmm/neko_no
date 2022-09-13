@@ -32,6 +32,24 @@
   <%= link_to user.name, user_path(user.id) %>
 <% end %>
 
-<%# @posts.each do |post| %>
-  <%#= @user.post.image %>
-<%# end %>
+<% @posts.each do |post| %>
+  <table>
+      <tr>
+        <td>
+          <%= link_to post_path(post.id) do %>
+          <%= image_tag post.image, size: "300x200" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= post.introduction %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= post.created_at.strftime('%Y/%m/%d') %>
+        </td>
+      </tr>
+    </table>
+<% end %>

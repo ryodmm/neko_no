@@ -66,19 +66,24 @@
       </div>
     </div>
 
-      <div style="padding-top:80px; margin-bottom:60px; height:100%">
-        <div class="container">
-          <%= yield %>
-        </div>
-      </div>
-
-    <div id="footer" class="fixed-bottom" style="height:60px; background-color: #cccccc;">
+    <div style="padding-top:80px; margin-bottom:60px; height:100%">
       <div class="container">
-        <%= link_to "投稿一覧", posts_path(current_user) %>
-        <%= link_to "検索", post_search_path(current_user) %>
-        <%= link_to "いいね一覧", post_favorites_path(current_user) %>
-        <%= link_to "ユーザ", user_path(current_user) %>
+        <%= yield %>
       </div>
     </div>
+
+    <% if user_signed_in? %>
+      <div id="footer" class="fixed-bottom" style="height:60px; background-color: #cccccc;">
+        <div class="container">
+          <%= link_to "投稿一覧", posts_path(current_user) %>
+          <%= link_to "検索", post_search_path(current_user) %>
+          <%= link_to "いいね一覧", favorites_user_path(current_user) %>
+          <%= link_to "ユーザ", user_path(current_user) %>
+        </div>
+      </div>
+    <% else %>
+      <div id="footer" class="fixed-bottom" style="height:60px; background-color: #cccccc;">
+      </div>
+    <% end %>
   </body>
 </html>

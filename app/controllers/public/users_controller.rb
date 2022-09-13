@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
   def show
     @users = User.all
     @user = User.find(params[:id])
+    @posts = @user.posts.all
   end
 
   def favorites

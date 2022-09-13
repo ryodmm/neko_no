@@ -1,2 +1,31 @@
-<h1>Public::Posts#search</h1>
-<p>Find me in app/views/public/posts/search.html.erb</p>
+<% @posts.each do |post| %>
+  <table>
+    <tr>
+      <td>
+        <%= link_to post_path(post.id) do %>
+        <%= image_tag post.image, size: "300x200" %>
+        <% end %>
+      </td>
+    </tr>
+    <td>
+      <td>
+        <%= image_tag post.user.get_profile_image(70,70) %>
+      </td>
+    </td>
+    <tr>
+      <td>
+        <%= post.introduction %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= post.user.name %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= post.created_at.strftime('%Y/%m/%d') %>
+      </td>
+    </tr>
+  </table>
+<% end %>

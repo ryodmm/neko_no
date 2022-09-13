@@ -36,7 +36,7 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-    @post = Post.all
+    @posts = Post.all
   end
 
   def destroy

@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'relationships/followings'
-    get 'relationships/followers'
-  end
   devise_for :admin, controllers: {
   sessions: "admin/sessions"
   }
@@ -21,7 +17,12 @@ Rails.application.routes.draw do
     resources :users, :posts
   end
 
+  namespace :public do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   scope module: :public do
+
     root to: 'homes#top'
 
     resources :users do
