@@ -14,57 +14,71 @@
 
   <body>
 
-    <header class="border border-bottom border-dark">
+    <div id="header" class="fixed-top" style="height:80px; background-color: #cccccc;">
+      <div class="container">
 
-      <div class="d-flex flex-wrap bd-highlight mb-3">
+        <div class="d-flex flex-wrap bd-highlight mb-3">
 
-        <div class="mr-auto pl-5 bd-highlight">
-              <h1>LOGO</h1>
+          <div class="mr-auto pl-5 bd-highlight">
+                <h1>LOGO</h1>
+          </div>
+
+          <% if admin_signed_in? %>
+
+            <div class="p-2 bd-highlight">
+              <%= link_to destroy_admin_session_path,method: :delete, class: "nav-link active" do %>
+                <button type="button" class="btn btn-outline-secondary">ログアウト</button>
+              <% end %>
+            </div>
+
+          <% elsif user_signed_in? %>
+            <div>
+              ようこそ<%= current_user.name %>さん！
+            </div>
+
+            <div class="center-block pt-5 pr-5">
+              <%= link_to "＋", new_post_path, class: "btn btn-light rounded-circle.p-0 width:2rem; height:2rem;" %>
+            </div>
+
+            <div class="p-2 bd-highlight">
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link active" do %>
+                <button type="button" class="btn btn-outline-secondary">ログアウト</button>
+              <% end %>
+            </div>
+
+          <% else %>
+
+            <div class="p-2 bd-highlight">
+              <%= link_to new_user_registration_path, class: "nav-link active" do %>
+                <button type="button" class="btn btn-success">新規登録</button>
+              <% end %>
+            </div>
+
+            <div class="p-2 bd-highlight">
+              <%= link_to user_session_path, class: "nav-link active" do %>
+                <button type="button" class="btn btn-primary">ログイン</button>
+              <% end %>
+            </div>
+
+          <% end %>
+
         </div>
+      </div>
+    </div>
 
-        <% if admin_signed_in? %>
+      <div style="padding-top:80px; margin-bottom:60px; height:100%">
+        <div class="container">
+          <%= yield %>
+        </div>
+      </div>
 
-          <div class="p-2 bd-highlight">
-            <%= link_to destroy_admin_session_path,method: :delete, class: "nav-link active" do %>
-              <button type="button" class="btn btn-outline-secondary">ログアウト</button>
-            <% end %>
-          </div>
-
-        <% elsif user_signed_in? %>
-          <div>
-            ようこそ<%= current_user.name %>さん！
-          </div>
-
-          <div class="center-block pt-5 pr-5">
-            <%= link_to "＋", new_post_path, class: "btn btn-light rounded-circle.p-0 width:2rem; height:2rem;" %>
-          </div>
-
-          <%= link_to "user", user_path(current_user) %>
-
-          <div class="p-2 bd-highlight">
-            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link active" do %>
-              <button type="button" class="btn btn-outline-secondary">ログアウト</button>
-            <% end %>
-          </div>
-
-        <% else %>
-
-          <div class="p-2 bd-highlight">
-            <%= link_to new_user_registration_path, class: "nav-link active" do %>
-              <button type="button" class="btn btn-success">新規登録</button>
-            <% end %>
-          </div>
-
-          <div class="p-2 bd-highlight">
-            <%= link_to user_session_path, class: "nav-link active" do %>
-              <button type="button" class="btn btn-primary">ログイン</button>
-            <% end %>
-          </div>
-
-        <% end %>
-
-    </header>
-
-    <%= yield %>
+    <div id="footer" class="fixed-bottom" style="height:60px; background-color: #cccccc;">
+      <div class="container">
+        <%= link_to "投稿一覧", posts_path(current_user) %>
+        <%= link_to "検索", post_search_path(current_user) %>
+        <%= link_to "いいね一覧", post_favorites_path(current_user) %>
+        <%= link_to "ユーザ", user_path(current_user) %>
+      </div>
+    </div>
   </body>
 </html>
