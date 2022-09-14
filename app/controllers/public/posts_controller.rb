@@ -36,7 +36,15 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.all
+    @range = params[:range]
+
+    if @range == 'User'
+      @users = User.search(params[:word])
+      @word = params[:word]
+    else
+      @posts = Post.search(params[:word])
+      @word = params[:word]
+    end
   end
 
   def destroy
@@ -48,7 +56,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post,).permit(:image, :introduction, :user_id)
+    params.require(:post).permit(:image, :introduction, :user_id)
   end
 
 end

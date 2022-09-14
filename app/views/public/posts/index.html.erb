@@ -10,7 +10,9 @@
       </tr>
       <td>
         <td>
-          <%= image_tag post.user.get_profile_image(70,70) %>
+          <%= link_to user_path(@user.id) do %>
+          <%= image_tag @user.get_profile_image(70,70) %>
+          <% end %>
         </td>
       </td>
       <tr>

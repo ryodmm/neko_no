@@ -9,4 +9,8 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  def self.search(word)
+    where(["introduction LIKE?","%#{word}%"])
+  end
+
 end

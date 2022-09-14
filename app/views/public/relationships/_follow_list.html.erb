@@ -2,7 +2,10 @@
   <% users.each do |user| %>
     <table>
       <tr>
-        <td><%= image_tag user.get_profile_image(70,70) %></td>
+        <td>
+          <%= link_to user_path(user.id) do %>
+          <%= image_tag user.get_profile_image(70,70) %>
+          <% end %>
         <td>
           <%= user.name %></br>
           <%= user.introduction %>

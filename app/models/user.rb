@@ -49,4 +49,8 @@ class User < ApplicationRecord
     end
   end
 
+  def self.search(word)
+      where(["name LIKE?","%#{word}%"])
+  end
+
 end
