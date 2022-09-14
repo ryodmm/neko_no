@@ -37,10 +37,13 @@ class Public::PostsController < ApplicationController
 
   def search
     @range = params[:range]
-
-    if @range == 'User'
+    @order = params[:order]
+    if @range == 'ユーザ'
       @users = User.search(params[:word])
       @word = params[:word]
+    elsif @range == '投稿' && @order == '人気順'
+      @posts = Post.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+
     else
       @posts = Post.search(params[:word])
       @word = params[:word]

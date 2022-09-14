@@ -1,37 +1,44 @@
-<table>
-
-  <div class="search_form">
-    <%= form_with url: post_search_path, local: true, method: :get do |f| %>
+<%= form_with url: post_search_path, local: true, method: :get do |f| %>
+  <table>
+    <div class="search_form">
       <%= f.text_field :word, value: @word %>
-      <%= f.select :range, options_for_select([['User'], ['Post']], @range) %>
+      <%= f.select :range, options_for_select([['ユーザ'], ['投稿']], @range) %>
+      <% if @range == '投稿' %>
+        <%= f.select :order, options_for_select([['新着順'], ['人気順']], @order) %>
+      <% end %>
       <%= f.submit "検索", class: "btn btn-primary" %>
+    </div>
+  </table>
+<% end %>
+
+<table>
+  <% if @range == 'ユーザ' %>
+    <% if @users.exists? %>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user_path(user.id) do %>
+            <%= image_tag user.get_profile_image(70,70) %>
+            <% end %>
+          </td>
+          <td>
+            <%= user.name %></br>
+            <%= user.introduction %>
+          </td>
+          <td>
+            <% if current_user.following?(user) %>
+              <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class: "btn btn-secondary" %>
+            <% else %>
+              <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <p>ユーザが見つかりませんでした。</p>
     <% end %>
-  </div>
 
-  <% if @range == 'User' %>
-    <% @users.each do |user| %>
-      <tr>
-        <td>
-          <%= link_to user_path(user.id) do %>
-          <%= image_tag user.get_profile_image(70,70) %>
-          <% end %>
-        </td>
-        <td>
-          <%= user.name %></br>
-          <%= user.introduction %>
-        </td>
-        <td>
-          <% if current_user.following?(user) %>
-            <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class: "btn btn-secondary" %>
-          <% else %>
-            <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-primary" %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-
-  <% else %>
-
+  <% elsif @range == '投稿' && @order == '人気順' %>
     <% @posts.each do |post| %>
       <tr>
         <td>
@@ -62,5 +69,39 @@
       </tr>
     <% end %>
 
+  <% else %>
+    <% if @posts.exists? %>
+      <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= link_to post_path(post.id) do %>
+            <%= image_tag post.image, size: "300x200" %>
+            <% end %>
+          </td>
+        </tr>
+        <td>
+          <td>
+            <%= image_tag post.user.get_profile_image(70,70) %>
+          </td>
+        </td>
+        <tr>
+          <td>
+            <%= post.introduction %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= post.user.name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= post.created_at.strftime('%Y/%m/%d') %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <p>投稿が見つかりませんでした。</p>
+    <% end %>
   <% end %>
 </table>
