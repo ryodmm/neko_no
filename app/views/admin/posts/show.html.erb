@@ -1,1 +1,35 @@
+<table>
+  <td>
+    <%= link_to admin_user_path(@post.user) do %>
+      <%= image_tag @post.user.get_profile_image(70,70) %>
+    <% end %>
+  </td>
+  <td><%= @post.user.name %></td>
+  <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+  <td><%= @post.introduction %></td>
+  <td>
+    <%= image_tag @post.image, size: "150x100" %>
+  </td>
+  <td>
+    <%= link_to "消去する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+  </td>
 
+  <div>
+    <% @post.post_comments.each do |post_comment| %>
+      <table>
+        <td>
+          <%= link_to admin_user_path(post_comment.user) do %>
+          <%= image_tag post_comment.user.get_profile_image(30,30) %>
+          <% end %>
+        </td>
+        <td>
+          <%= post_comment.user.name %> <%= post_comment.comment %><br>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        </td>
+        <td>
+            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+        </td>
+      </table>
+    <% end %>
+  </div>
+</table>

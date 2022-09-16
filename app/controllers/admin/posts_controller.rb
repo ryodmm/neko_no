@@ -22,4 +22,15 @@ class Admin::PostsController < ApplicationController
       @posts = Post.search(params[:word])
     end
   end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to admin_search_path
+  end
+
+  def post_params
+    params.require(:post).permit(:image, :introduction, :user_id)
+  end
+
 end
