@@ -1,7 +1,7 @@
 <%= form_with url: post_search_path, local: true, method: :get do |f| %>
   <table>
     <div class="search_form">
-      <%= f.text_field :word, value: @word %>
+      <%= f.text_field :word, placeholder: '検索ワードを入力', value: params[:word] %>
       <%= f.select :range, options_for_select([['ユーザ'], ['投稿']], @range) %>
       <% if @range == '投稿' %>
         <%= f.select :order, options_for_select([['新着順'], ['人気順']], @order) %>
