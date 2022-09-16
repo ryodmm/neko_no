@@ -39,14 +39,14 @@
     <% end %>
 
   <% elsif @range == '投稿' && @order == '人気順' %>
-    <%= render 'list', posts: @posts %>
+    <%= render 'list', posts: @posts, user: @user %>
 
   <% elsif @range == '投稿' && @order == '新着順' %>
-    <%= render 'list', posts: @posts %>
+    <%= render 'list', posts: @posts, user: @user %>
 
   <% else %>
     <% if @posts.exists? %>
-      <%= render 'list', posts: @posts %>
+      <%= render 'list', posts: @posts, user: @user %>
     <% else %>
       <p>投稿が見つかりませんでした。</p>
     <% end %>

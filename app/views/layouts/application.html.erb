@@ -48,18 +48,6 @@
 
           <% else %>
 
-            <div class="p-2 bd-highlight">
-              <%= link_to new_user_registration_path, class: "nav-link active" do %>
-                <button type="button" class="btn btn-success">新規登録</button>
-              <% end %>
-            </div>
-
-            <div class="p-2 bd-highlight">
-              <%= link_to user_session_path, class: "nav-link active" do %>
-                <button type="button" class="btn btn-primary">ログイン</button>
-              <% end %>
-            </div>
-
           <% end %>
 
         </div>
@@ -81,6 +69,16 @@
           <%= link_to "ユーザ", user_path(current_user) %>
         </div>
       </div>
+
+
+    <% elsif admin_signed_in? %>
+      <div id="footer" class="fixed-bottom" style="height:60px; background-color: #cccccc;">
+        <div class="container">
+          <%= link_to "検索", admin_search_path %>
+          <%= link_to "ユーザ", admin_users_path %>
+        </div>
+      </div>
+
     <% else %>
       <div id="footer" class="fixed-bottom" style="height:60px; background-color: #cccccc;">
       </div>

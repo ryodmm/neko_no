@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+
   def new
     @post = Post.new
   end
@@ -38,6 +39,7 @@ class Public::PostsController < ApplicationController
   def search
     @range = params[:range]
     @order = params[:order]
+    @user = params[:user_id]
     if @range == 'ユーザ'
       @users = User.search(params[:word])
 
