@@ -1,2 +1,37 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<table>
+  <td><%= image_tag @user.get_profile_image(70,70) %></td>
+  <td>
+    <%= @user.name %></br>
+    <%= @user.introduction %>
+  </td>
+  <td>
+    <%= @user.followings.count %></br>
+    <%= link_to "フォロー中", admin_user_followings_path(@user.id) %>
+  </td>
+  <td>
+    <%= @user.followers.count %></br>
+      <%= link_to "フォロワー", admin_user_followers_path(@user.id) %>
+  </td>
+</table>
+
+<% @posts.each do |post| %>
+  <table>
+      <tr>
+        <td>
+          <%= link_to admin_post_path(post.id) do %>
+          <%= image_tag post.image, size: "300x200" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= post.introduction %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= post.created_at.strftime('%Y/%m/%d') %>
+        </td>
+      </tr>
+    </table>
+<% end %>

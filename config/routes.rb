@@ -14,14 +14,23 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, :posts
+    resources :users do
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+
+    resources :posts
+
     get 'search' => 'posts#search'
+    get 'relationships/followings'
+    get 'relationships/followers'
   end
 
   namespace :public do
     get 'relationships/followings'
     get 'relationships/followers'
   end
+
   scope module: :public do
 
     root to: 'homes#top'
@@ -30,11 +39,14 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+
       get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
       patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+
       member do   #member doを使うと、ユーザーidが含まれてるurlを使えるようになる（users/:id/favorites）
         get :favorites
       end
+
     end
 
     resources :posts do
