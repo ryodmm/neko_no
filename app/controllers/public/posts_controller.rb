@@ -41,8 +41,13 @@ class Public::PostsController < ApplicationController
     if @range == 'ユーザ'
       @users = User.search(params[:word])
       @word = params[:word]
+
     elsif @range == '投稿' && @order == '人気順'
       @posts = Post.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+
+    elsif @range == '投稿' && @order == '新着順'
+      @posts = Post.all
+      @posts = Post.all.order(created_at: :desc)
 
     else
       @posts = Post.search(params[:word])

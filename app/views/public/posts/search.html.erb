@@ -39,69 +39,17 @@
     <% end %>
 
   <% elsif @range == '投稿' && @order == '人気順' %>
-    <% @posts.each do |post| %>
-      <tr>
-        <td>
-          <%= link_to post_path(post.id) do %>
-          <%= image_tag post.image, size: "300x200" %>
-          <% end %>
-        </td>
-      </tr>
-      <td>
-        <td>
-          <%= image_tag post.user.get_profile_image(70,70) %>
-        </td>
-      </td>
-      <tr>
-        <td>
-          <%= post.introduction %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= post.user.name %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= post.created_at.strftime('%Y/%m/%d') %>
-        </td>
-      </tr>
-    <% end %>
+    <%= render 'list', posts: @posts %>
+
+  <% elsif @range == '投稿' && @order == '新着順' %>
+    <%= render 'list', posts: @posts %>
 
   <% else %>
     <% if @posts.exists? %>
-      <% @posts.each do |post| %>
-        <tr>
-          <td>
-            <%= link_to post_path(post.id) do %>
-            <%= image_tag post.image, size: "300x200" %>
-            <% end %>
-          </td>
-        </tr>
-        <td>
-          <td>
-            <%= image_tag post.user.get_profile_image(70,70) %>
-          </td>
-        </td>
-        <tr>
-          <td>
-            <%= post.introduction %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= post.user.name %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= post.created_at.strftime('%Y/%m/%d') %>
-          </td>
-        </tr>
-      <% end %>
+      <%= render 'list', posts: @posts %>
     <% else %>
       <p>投稿が見つかりませんでした。</p>
     <% end %>
+
   <% end %>
 </table>
