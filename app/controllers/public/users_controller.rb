@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :reject_freeze_user
 
   def show
     @users = User.all

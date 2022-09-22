@@ -17,6 +17,14 @@ Rails.application.routes.draw do
     resources :users do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+
+      collection do
+        get 'freeze_users'
+      end
+      member do
+        patch 'add_freeze'
+        delete 'remove_freeze'
+      end
     end
 
     resources :posts

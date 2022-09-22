@@ -1,4 +1,4 @@
-<table>
+
   <td>
     <%= link_to user_path(@post.user) do %>
     <%= image_tag @post.user.get_profile_image(70,70) %>
@@ -28,14 +28,11 @@
       </p>
     <% end %>
 
-  <div>
-    <%= form_with model: [@post, @post_comment] do |f| %>
+   <%= form_with model: [@post, @post_comment] do |f| %>
       <%= f.text_area :comment, rows: '5', placeholder: "コメントを追加" %>
       <%= f.submit "投稿する" %>
     <% end %>
-  </div>
 
-  <div>
     <% @post.post_comments.each do |post_comment| %>
       <table>
         <td>
@@ -54,5 +51,3 @@
         </td>
       </table>
     <% end %>
-  </div>
-</table>

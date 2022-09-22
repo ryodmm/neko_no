@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
-
+  before_action :reject_freeze_user
+  
   def new
     @post = Post.new
   end

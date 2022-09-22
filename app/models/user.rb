@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  scope :freezed, -> { where(is_freeze: true) }
+  scope :not_freezed, -> { where(is_freeze: false) }
+
   has_one_attached :profile_image
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -17,6 +20,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_posts, through: :favorites, source: :post
+  has_one :freeze, dependent: :destroy
 
   # フォローをした、されたの関係
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

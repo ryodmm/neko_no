@@ -10,8 +10,8 @@
       </tr>
       <td>
         <td>
-          <%= link_to user_path(@user.id) do %>
-          <%= image_tag @user.get_profile_image(70,70) %>
+          <%= link_to user_path(post.user) do %>
+          <%= image_tag post.user.get_profile_image(70,70) %>
           <% end %>
         </td>
       </td>
@@ -35,6 +35,6 @@
 <% else %>
   <p>
     フォローしてる方の投稿はありません。</br>
-    検索画面より新しい猫ちゃんを探しにいきましょう！
+    検索画面より投稿をを探しにいきましょう！
   </p>
 <% end %>

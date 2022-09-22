@@ -1,17 +1,3 @@
-<% @users.each do |user| %>
-  <table>
-    <th>
-      <td>
-        <%= link_to admin_user_path(user.id) do %>
-          <%= image_tag user.get_profile_image(70,70) %>
-        <% end %>
-      </td>
-      <td>
-        <%= user.name %>
-      </td>
-      <td>
-        <%= user.introduction %>
-      </td>
-    </th>
-  </table>
-<% end %>
+<%= render 'admin/users/users', users: @users %>
+
+<%= link_to "フリーズ一覧", freeze_users_admin_users_path %>
