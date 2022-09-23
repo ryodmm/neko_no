@@ -1,3 +1,4 @@
+<% if @user.released? or @user.id == current_user.id %>
 <table>
     <td><%= image_tag @user.get_profile_image(70,70) %></td>
     <td>
@@ -25,6 +26,14 @@
       <% else %>
         <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
       <% end %>
+
+    <% if current_user.id == @user.id %>
+      <% if @user.released? %>
+        <%= link_to '非公開にする', nonrelease_user_path(@user.id), method: :patch%>
+      <% else %>
+        <%= link_to '公開する', release_user_path(@user.id), method: :patch%>
+      <% end %>
+    <% end %>
     </td>
 </table>
 
@@ -52,4 +61,9 @@
         </td>
       </tr>
     </table>
+<% end %>
+
+<% else %>
+  このユーザは非公開です
+
 <% end %>

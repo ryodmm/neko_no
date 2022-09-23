@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  enum status:{nonreleased: 0, released: 1}
+
   scope :freezed, -> { where(is_freeze: true) }
   scope :not_freezed, -> { where(is_freeze: false) }
 

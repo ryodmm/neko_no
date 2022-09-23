@@ -48,14 +48,15 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
 
-      get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-      patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
-
       member do   #member doを使うと、ユーザーidが含まれてるurlを使えるようになる（users/:id/favorites）
         get :favorites
+        patch 'release'
+        patch 'nonrelease'
       end
 
     end
+      get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+      patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
 
     resources :posts do
       resource :favorites, only: [:create, :destroy]  #いいねのidはURLに含める必要がない(params[:id]を使わなくても良い)ため、resourceを使う。URLに/:idを含めない形

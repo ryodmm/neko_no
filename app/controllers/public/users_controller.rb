@@ -35,6 +35,18 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def release
+    @user = current_user
+    @user.released! unless @user.released?
+    redirect_to  request.referer, notice: 'このアカウントを公開しました'
+  end
+
+  def nonrelease
+    @user = current_user
+    @user.nonreleased! unless @user.nonreleased?
+    redirect_to request.referer, notice: 'このアカウントを非公開にしました'
+  end
+
   #def destroy_confirm       #ゲストが退会しようとするとログアウトしトップページへいく
     #@user = current_user
   #end
