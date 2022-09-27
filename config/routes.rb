@@ -9,9 +9,6 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
-  end
 
   namespace :admin do
     resources :users do
@@ -30,21 +27,22 @@ Rails.application.routes.draw do
     resources :posts
 
     get 'search' => 'posts#search'
-    get 'relationships/followings'
-    get 'relationships/followers'
-  end
-
-  namespace :public do
-    get 'relationships/followings'
-    get 'relationships/followers'
   end
 
   scope module: :public do
 
     root to: 'homes#top'
 
+    devise_scope :user do
+      post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    end
+
+    get 'relationships/followers'
+    get 'relationships/followings'
+
     resources :users do
       resource :relationships, only: [:create, :destroy]
+
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
 

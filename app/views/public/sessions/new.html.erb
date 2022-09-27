@@ -1,24 +1,35 @@
-<h2>ログイン</h2>
+<div class="row pt-5">
+  <div class="col-3 p-3">
+    <h4 class="table-active">
+      <div style="text-align: center">ログイン</div>
+    </h4>
+  </div>
+</div>
 
 <%= form_with model: @user, url: user_session_path do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div class="row p-1">
+    <div class="col-3">
+      <%= f.label :メールアドレス %>
     </div>
-  <% end %>
+    <div class="col-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "50x10" %>
+    </div>
+  </div>
 
-  <%= f.submit "ログイン", class: "btn btn-primary" %>
+  <div class="row p-1">
+    <div class="col-3">
+      <%= f.label :パスワード %>
+    </div>
+    <div class="col-3">
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+  </div>
+
+   <div class="row py-5">
+    <div class="col-3 offset-3">
+      <%= f.submit "ログイン", class: "btn btn-primary" %>
+    </div>
+  </div>
 
   <div class="actions">
     新規会員登録は

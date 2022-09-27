@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+  before_action :user_state, only: [:create]
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -20,11 +22,11 @@ class Public::SessionsController < Devise::SessionsController
 
   protected
 
-  def customer_state
+  def user_state
     @user = User.find_by(email: params[:email])
     return if !@user
     if @user.valid_password?(params[:password]) && (@user.is_deleted == false)
-      redirect_to new_user_registration_path
+      redirect_to new_user_session_path
     end
 
   # If you have extra params to permit, append them to the sanitizer.

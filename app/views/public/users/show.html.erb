@@ -1,6 +1,6 @@
 <% if @user.released? or @user.id == current_user.id %>
 <table>
-    <td><%= image_tag @user.get_profile_image(70,70) %></td>
+    <td><%= image_tag @user.get_profile_image(70,70), class: "rounded-circle" %></td>
     <td>
       <%= @user.name %></br>
       <%= @user.introduction %>

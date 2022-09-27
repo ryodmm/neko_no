@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :reject_freeze_user
-  
+
   def new
     @post = Post.new
   end
@@ -17,6 +17,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.where(user_id: [current_user.id, *current_user.following_ids])  #自分とフォローしているユーザの投稿を全件取得
+                 .order(created_at: :desc)
   end
 
   def show

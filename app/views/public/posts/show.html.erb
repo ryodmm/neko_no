@@ -1,7 +1,7 @@
 
   <td>
     <%= link_to user_path(@post.user) do %>
-    <%= image_tag @post.user.get_profile_image(70,70) %>
+    <%= image_tag @post.user.get_profile_image(70,70), class: "rounded-circle" %>
     <% end %>
   </td>
   <td><%= @post.user.name %></td>

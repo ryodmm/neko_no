@@ -1,6 +1,6 @@
 <%= form_with model: @user, method: :patch, local:true do |f| %>
 
-  <%= image_tag @user.get_profile_image(70,70) %>
+  <%= image_tag @user.get_profile_image(70,70), class: "rounded-circle" %>
   プロフィール写真を変更
   <%= f.file_field :profile_image, accept: "image/*" %>
 
