@@ -1,53 +1,76 @@
-
-  <td>
+<div class="row pt-5 pl-5">
+  <div class="col-1">
     <%= link_to user_path(@post.user) do %>
     <%= image_tag @post.user.get_profile_image(70,70), class: "rounded-circle" %>
     <% end %>
-  </td>
-  <td><%= @post.user.name %></td>
-  <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
-  <td><%= @post.introduction %></td>
-  <td>
-    <%= image_tag @post.image, size: "150x100" %>
+  </div>
+  <div class="col-10 d-flex align-items-center">
+    <strong><%= @post.user.name %></strong>
+  </div>
+</div>
+
+<div class="row pt-3">
+  <div class="col-4 offset-2">
+    <div style="color :gray"><%= @post.created_at.strftime('%Y/%m/%d') %></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-4 offset-2">
+    <%= @post.introduction %>
+  </div>
+</div>
+
+  <div class="row pt-3">
+    <div class="col-5 offset-2">
+      <%= image_tag @post.image, size: "450x300" %>
+    </div>
     <% if current_user.id == @post.user_id %>
-      <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
+      <div class="col-2">
+        <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-success" %>
+      </div>
     <% end %>
-  </td>
+  </div>
 
-  <% if @post.favorited_by?(current_user) %>
-      <p>
-        <%= link_to post_favorites_path(@post), method: :delete do %>
-          ♥<%= @post.favorites.count %>
-        <% end %>
-      </p>
+  <div class="row pt-1">
+    <div class="col-1 offset-2">
+      <% if @post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorites_path(@post), method: :delete do %>
+              ♥<%= @post.favorites.count %>
+            <% end %>
+          </p>
       <% else %>
-      <p>
-        <%= link_to post_favorites_path(@post), method: :post do %>
-          ♡<%= @post.favorites.count %>
-        <% end %>
-      </p>
-    <% end %>
+          <p>
+            <%= link_to post_favorites_path(@post), method: :post do %>
+              ♡<%= @post.favorites.count %>
+            <% end %>
+          </p>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <%= form_with model: [@post, @post_comment] do |f| %>
+         <div class="pt-2">
+          <%= f.text_area :comment, placeholder: "コメントを追加" %>
+          <%= f.submit "投稿する" %>
+        </div>
+      <% end %>
 
-   <%= form_with model: [@post, @post_comment] do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: "コメントを追加" %>
-      <%= f.submit "投稿する" %>
-    <% end %>
-
-    <% @post.post_comments.each do |post_comment| %>
-      <table>
-        <td>
-          <%= link_to user_path(post_comment.user) do %>
-          <%= image_tag post_comment.user.get_profile_image(30,30) %>
-          <% end %>
-        </td>
-        <td>
-          <%= post_comment.user.name %> <%= post_comment.comment %><br>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-        </td>
-        <td>
-          <% if post_comment.user == current_user %>
-            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-          <% end %>
-        </td>
-      </table>
-    <% end %>
+      <% @post.post_comments.each do |post_comment| %>
+        <table>
+          <td class="d-flex align-items-start">
+            <%= link_to user_path(post_comment.user) do %>
+            <%= image_tag post_comment.user.get_profile_image(30,30) %>
+            <% end %>
+          </td>
+          <td>
+            <strong><%= post_comment.user.name %></strong> <%= post_comment.comment %><br>
+            <div style="color :gray"><%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            <% if post_comment.user == current_user %>
+              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+            <% end %>
+            </div>
+          </td>
+        </table>
+      <% end %>
+    </div>
+  </div>

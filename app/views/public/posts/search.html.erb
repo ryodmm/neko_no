@@ -1,12 +1,20 @@
 <%= form_with url: post_search_path, local: true, method: :get do |f| %>
   <table>
-    <div class="search_form">
-      <%= f.text_field :word, placeholder: '検索ワードを入力', value: params[:word] %>
-      <%= f.select :range, options_for_select([['ユーザ'], ['投稿']], @range) %>
-      <% if @range == '投稿' %>
-        <%= f.select :order, options_for_select([['新着順'], ['人気順']], @order) %>
-      <% end %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
+    <div class="row py-4 justify-content-center">
+      <div class="col-4">
+        <%= f.text_field :word, placeholder: '検索ワードを入力', size: "40x10", value: params[:word] %>
+      </div>
+      <div class="col-1">
+        <%= f.select :range, options_for_select([['ユーザ'], ['投稿']], @range) %>
+      </div>
+      <div class="col-1">
+        <% if @range == '投稿' %>
+          <%= f.select :order, options_for_select([['新着順'], ['人気順']], @order) %>
+        <% end %>
+      </div>
+      <div class="col-1">
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      </div>
     </div>
   </table>
 <% end %>

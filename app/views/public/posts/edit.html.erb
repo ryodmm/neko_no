@@ -1,26 +1,35 @@
-<h4>投稿編集</h4>
+<div class="row pt-5">
+  <div class="col-3 p-3">
+    <h4 class="table">
+      <div style="text-align: center">投稿編集</div>
+    </h4>
+  </div>
+</div>
 
 <%= form_with model: @post, local:true, method: :patch do |f| %>
   <table class="table table-borderless">
 
-    <tr class="row">
-      <th class="col-2 offset-1">写真・動画を選択</th>
-      <td>
+    <div class="row p-2">
+      <div class="col-2 offset-1 d-flex justify-content-end">写真・動画を選択</div>
+      <div>
         <%= f.file_field :image, accept: "image/*" %>
-      </td>
-    </tr>
+      </div>
+    </div>
 
-    <tr class="row">
-      <th class="col-2 offset-1">キャプション</th>
-      <td>
+    <div class="row p-2">
+      <div class="col-2 offset-1 d-flex justify-content-end">キャプション</div>
+      <div>
         <%= f.text_area :introduction %>
-      </td>
-    </tr>
+      </div>
+    </div>
 
-    <tr class="row">
-      <th class="col-4"></th>
-      <td><%= f.submit '更新', class: "btn btn-success" %></td>
-      <td><%= link_to "消去する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
-    </tr>
+    <div class="row p-2">
+      <div class="col-2 offset-3">
+        <%= f.submit '更新', class: "btn btn-success" %>
+      </div>
+      <div class="col-2">
+        <%= link_to "消去する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+      </div>
+    </div>
   </table>
 <% end %>
