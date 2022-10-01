@@ -1,35 +1,50 @@
-<table>
-  <td>
+<div class="row pt-5 pl-5">
+  <div class="col-1">
     <%= link_to admin_user_path(@post.user) do %>
-      <%= image_tag @post.user.get_profile_image(70,70) %>
+    <%= image_tag @post.user.get_profile_image(70,70), size: "70x70", class: "rounded-circle" %>
     <% end %>
-  </td>
-  <td><%= @post.user.name %></td>
-  <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
-  <td><%= @post.introduction %></td>
-  <td>
-    <%= image_tag @post.image, size: "150x100" %>
-  </td>
-  <td>
-    <%= link_to "消去する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-  </td>
+  </div>
+  <div class="col-8 d-flex align-items-center">
+    <strong><%= @post.user.name %></strong>
+  </div>
+  <div class="col-2">
+    <%= link_to "投稿を消去する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+  </div>
+</div>
 
-  <div>
+<div class="row pt-3">
+  <div class="col-4 offset-2">
+    <div style="color :gray"><%= @post.created_at.strftime('%Y/%m/%d') %></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-4 offset-2">
+    <%= @post.introduction %>
+  </div>
+</div>
+
+<div class="row pt-3">
+  <div class="col-5 offset-2">
+    <%= image_tag @post.image, size: "450x300" %>
+  </div>
+</div>
+
+<div class="row pt-1">
+  <div class="col-4">
     <% @post.post_comments.each do |post_comment| %>
       <table>
-        <td>
+        <td class="d-flex align-items-start">
           <%= link_to admin_user_path(post_comment.user) do %>
           <%= image_tag post_comment.user.get_profile_image(30,30) %>
           <% end %>
         </td>
         <td>
-          <%= post_comment.user.name %> <%= post_comment.comment %><br>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-        </td>
-        <td>
+          <strong><%= post_comment.user.name %></strong> <%= post_comment.comment %><br>
+          <div style="color :gray"><%= post_comment.created_at.strftime('%Y/%m/%d') %>
             <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+          </div>
         </td>
       </table>
     <% end %>
   </div>
-</table>
+</div>

@@ -1,37 +1,38 @@
-<table>
-  <td><%= image_tag @user.get_profile_image(70,70) %></td>
-  <td>
-    <%= @user.name %></br>
-    <%= @user.introduction %>
-  </td>
-  <td>
+<div class="row pt-5">
+  <div class="col-1"><%= image_tag @user.get_profile_image(70,70), size: "70x70", class: "rounded-circle" %></div>
+  <div class="col-2 d-flex align-items-center"><strong><%= @user.name %></strong></div>
+
+  <div class="col-2">
     <%= @user.followings.count %></br>
     <%= link_to "フォロー中", admin_user_followings_path(@user.id) %>
-  </td>
-  <td>
+  </div>
+  <div class="col-2">
     <%= @user.followers.count %></br>
-      <%= link_to "フォロワー", admin_user_followers_path(@user.id) %>
-  </td>
-</table>
+    <%= link_to "フォロワー", admin_user_followers_path(@user.id) %>
+  </div>
+  <div class="col-2 offset-1 d-flex align-items-center">
+    <% if @user.is_freeze? %>
+      <%= button_to '停止解除', remove_freeze_admin_user_path(@user), method: :delete, class: "btn btn-outline-success" %>
+    <% else %>
+      <%= button_to 'アカウント停止', add_freeze_admin_user_path(@user), method: :patch, "data-confirm" => "本当に停止しますか？", class: "btn btn-outline-danger" %>
+    <% end %>
+  </div>
+</div>
 
-<% @posts.each do |post| %>
-  <table>
-      <tr>
-        <td>
-          <%= link_to admin_post_path(post.id) do %>
-          <%= image_tag post.image, size: "300x200" %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= post.introduction %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= post.created_at.strftime('%Y/%m/%d') %>
-        </td>
-      </tr>
-    </table>
-<% end %>
+  <div class="row pt-2">
+    <div class="col-6 offset-1">
+      <%= @user.introduction %>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row pt-3">
+    <% @posts.each do |post| %>
+      <div class="col-3 pb-2">
+        <%= link_to admin_post_path(post.id) do %>
+        <%= image_tag post.image, size: "270x250" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
