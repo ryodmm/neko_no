@@ -5,6 +5,7 @@ class Public::UsersController < ApplicationController
     @users = User.all
     @user = User.find(params[:id])
     @posts = @user.posts.all
+                        .order(created_at: :desc)
   end
 
   def favorites

@@ -1,67 +1,61 @@
 <% if @user.released? or @user.id == current_user.id %>
-<table>
-    <td><%= image_tag @user.get_profile_image(70,70), class: "rounded-circle" %></td>
-    <td>
-      <%= @user.name %></br>
-      <%= @user.introduction %>
-    </td>
-    <td>
+  <div class="row pt-5">
+
+    <div class="col-1"><%= image_tag @user.get_profile_image(70,70), class: "rounded-circle" %></div>
+    <div class="col-2 d-flex align-items-center"><strong><%= @user.name %></strong></div>
+
+    <div class="col-2">
       <%= @user.followings.count %></br>
       <%= link_to "フォロー中", user_followings_path(@user.id) %>
-    </td>
-    <td>
+    </div>
+    <div class="col-2">
       <%= @user.followers.count %></br>
       <% if @user.id == current_user.id %>
         <%= link_to "あなたをフォロー", user_followers_path(@user.id) %>
       <% else %>
         <%= link_to "フォロワー", user_followers_path(@user.id) %>
       <% end %>
-    </td>
+    </div>
 
-    <td>
+    <div class="col-2">
       <% if @user.id == current_user.id %>
-        <%= link_to "プロフィールを編集", edit_user_path(@user.id), class: "btn btn-success" %>
+        <%= link_to "プロフィール編集", edit_user_path(@user.id), class: "btn btn-success" %>
       <% elsif current_user.following?(@user) %>
-        <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-secondary" %>
+        <%= link_to "フォローを外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-outline-secondary" %>
       <% else %>
         <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-primary" %>
       <% end %>
-
+    </div>
+    <div class="col-2">
     <% if current_user.id == @user.id %>
       <% if @user.released? %>
-        <%= link_to '非公開にする', nonrelease_user_path(@user.id), method: :patch%>
+        <%= link_to '非公開にする', nonrelease_user_path(@user.id), method: :patch, class: "btn btn-primary" %>
       <% else %>
-        <%= link_to '公開する', release_user_path(@user.id), method: :patch%>
+        <%= link_to '公開する', release_user_path(@user.id), method: :patch, class: "btn btn-primary" %>
       <% end %>
     <% end %>
-    </td>
-</table>
+    </div>
+  </div>
 
-<% @users.each do |user| %>
-  <%= link_to user.name, user_path(user.id) %>
-<% end %>
+  <div class="row pt-2">
+    <div class="col-6 offset-1">
+      <%= @user.introduction %>
+    </div>
+  </div>
 
-<% @posts.each do |post| %>
-  <table>
-      <tr>
-        <td>
-          <%= link_to post_path(post.id) do %>
-          <%= image_tag post.image, size: "300x200" %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= post.introduction %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= post.created_at.strftime('%Y/%m/%d') %>
-        </td>
-      </tr>
-    </table>
-<% end %>
+  <% @users.each do |user| %>
+    <%= link_to user.name, user_path(user.id) %>
+  <% end %>
+
+  <div class="row p-2">
+    <% @posts.each do |post| %>
+      <div class="col-3 pb-2">
+        <%= link_to post_path(post.id) do %>
+        <%= image_tag post.image, size: "270x250" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
 <% else %>
   このユーザは非公開です
