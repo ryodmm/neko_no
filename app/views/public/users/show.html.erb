@@ -1,7 +1,7 @@
 <% if @user.released? or @user.id == current_user.id %>
   <div class="row pt-5">
 
-    <div class="col-1"><%= image_tag @user.get_profile_image(70,70), class: "rounded-circle" %></div>
+    <div class="col-1"><%= image_tag @user.get_profile_image(70,70), size: "70x70", class: "rounded-circle" %></div>
     <div class="col-2 d-flex align-items-center"><strong><%= @user.name %></strong></div>
 
     <div class="col-2">

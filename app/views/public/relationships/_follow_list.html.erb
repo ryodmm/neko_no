@@ -3,7 +3,7 @@
       <div class="row p-2 d-flex justify-content-center">
         <div class="col-1">
           <%= link_to user_path(user.id) do %>
-          <%= image_tag user.get_profile_image(70,70), class: "rounded-circle" %>
+         <%= image_tag user.get_profile_image(70,70), size: "70x70", class: "rounded-circle" %>
           <% end %>
         </div>
         <div class="col-4">

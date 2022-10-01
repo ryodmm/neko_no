@@ -1,26 +1,52 @@
 <%= form_with model: @user, method: :patch, local:true do |f| %>
-
-  <%= image_tag @user.get_profile_image(70,70), class: "rounded-circle" %>
-  プロフィール写真を変更
-  <%= f.file_field :profile_image, accept: "image/*" %>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row pt-5">
+    <div class="col-1 offset-5">
+      <%= image_tag @user.get_profile_image(70,70), size: "70x70", class: "rounded-circle" %>
+    </div>
+    <div class="col-2 offset-4">
+      <%= link_to "退会する", unsubscribe_path, class: "btn btn-secondary" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :ニックネーム %><br>
-    <%= f.text_field :name, :maxlength => "10" %>
+  <div class="row pt-3">
+    <div class="col-3 offset-2 d-flex justify-content-end">
+      <%= f.label :プロフィール写真を変更 %>
+    </div>
+    <div class="col-2">
+      <%= f.file_field :profile_image, accept: "image/*" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :自己紹介 %><br>
-    <%= f.text_area :introduction, :maxlength => "250" %>
+  <div class="row pt-5">
+    <div class="col-2 offset-3 d-flex justify-content-end">
+      <%= f.label :メールアドレス %>
+    </div>
+    <div class="col-2">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "30x10" %>
+    </div>
   </div>
 
-  <%= f.submit '更新', class: "btn btn-success" %>
+  <div class="row pt-3">
+    <div class="col-2 offset-3 d-flex justify-content-end">
+      <%= f.label :ニックネーム %>
+    </div>
+    <div class="col-2">
+      <%= f.text_field :name, :maxlength => "10", size: "30x10" %>
+    </div>
+  </div>
 
-  <%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %>
+  <div class="row pt-3">
+    <div class="col-2 offset-3 d-flex justify-content-end">
+      <%= f.label :自己紹介 %>
+    </div>
+    <div class="col-2">
+      <%= f.text_area :introduction, :maxlength => "250", size: "30x3" %>
+    </div>
+  </div>
+
+  <div class="row pt-4 d-flex justify-content-center">
+    <%= f.submit '更新', class: "btn btn-success btn-lg" %>
+  </div>
+
 
 <% end %>

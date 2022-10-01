@@ -11,7 +11,7 @@
         <div class="row p-1">
           <div>
             <%= link_to user_path(post.user) do %>
-            <%= image_tag post.user.get_profile_image(70,70), class: "rounded-circle" %>
+            <%= image_tag post.user.get_profile_image(70,70), size: "70x70", class: "rounded-circle" %>
             <% end %>
           </div>
 
