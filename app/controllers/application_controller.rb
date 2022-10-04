@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       if resource_or_scope.is_a?(Admin)
           admin_users_path
       else
-          posts_path
+        posts_path
       end
     end
 

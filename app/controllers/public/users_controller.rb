@@ -26,14 +26,19 @@ class Public::UsersController < ApplicationController
   end
 
   def unsubscribe
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def withdrawal
-    @user = User.find(params[:id])
-    @user.update(is_deleted: true)
-    reset_session
-    redirect_to root_path
+    @user = current_user
+    if @user.email == 'guest@example.com'     #ゲストユーザが退会しようとした場合、ログアウトしルートパスへ遷移
+      reset_session
+      redirect_to :root
+    else
+      @user.update(is_deleted: true)
+      reset_session
+      redirect_to root_path
+    end
   end
 
   def release
@@ -48,21 +53,6 @@ class Public::UsersController < ApplicationController
     redirect_to request.referer, notice: 'このアカウントを非公開にしました'
   end
 
-  #def destroy_confirm       #ゲストが退会しようとするとログアウトしトップページへいく
-    #@user = current_user
-  #end
-
-  #def destroy_user
-    #@user = current_user
-    #if @user.email == 'guestda@example.com'
-      #reset_session
-      #redirect_to :root
-    #else
-      #@user.update(is_valid: false)
-      #reset_session
-      #redirect_to :root
-    #end
-  #end
 
   private
 

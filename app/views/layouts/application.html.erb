@@ -15,7 +15,7 @@
   </head>
 
   <body>
-
+    <div class="image">
     <div id="header" class="fixed-top border-bottom" style="height:80px;">
       <div class="container">
         <div class="row pt-2 d-flex align-items-center">
@@ -32,12 +32,12 @@
             </div>
 
           <% elsif user_signed_in? %>
-            <div class="col-3">
+            <div class="col-4">
               ＜<%= current_user.name %>さんいらっしゃい！
             </div>
 
-            <div class="col-1 offset-1">
-              <%= link_to "＋", new_post_path, class: "btn btn-outline-light rounded-circle btn-lg" %>
+            <div class="col-1">
+              <%= link_to "＋", new_post_path, class: "btn btn-outline-secondary rounded-circle btn-lg" %>
             </div>
 
             <div class="col-2 offset-4">
@@ -52,6 +52,7 @@
 
         </div>
       </div>
+    </div>
     </div>
 
     <div style="padding-top:80px; margin-bottom:80px; height:100%">
