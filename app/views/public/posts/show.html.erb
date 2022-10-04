@@ -51,7 +51,7 @@
       <%= form_with model: [@post, @post_comment] do |f| %>
          <div class="pt-2">
           <%= f.text_area :comment, placeholder: "コメントを追加" %>
-          <%= f.submit "投稿する" %>
+          <%= f.submit "投稿する", class: "btn btn-outline-info" %>
         </div>
       <% end %>
 
