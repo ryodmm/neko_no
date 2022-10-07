@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :reject_freeze_user
-  before_action :ensure_user, only: [:edit, :update, :destroy]
+  before_action :ensure_user, only: [:edit, :update, :unsubscribe, :withdrawal]
 
   def show
     @users = User.all
@@ -65,6 +65,10 @@ class Public::UsersController < ApplicationController
     if @user.id != current_user.id
       flash[:notice] = "権限がありません"
       redirect_to user_path(current_user)
+    elsif @user.email == 'guest@example.com'
+      flash[:notice] = "ゲストアカウントは編集できません。"
+      redirect_to user_path(current_user)
+    else
     end
   end
 

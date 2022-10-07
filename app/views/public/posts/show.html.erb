@@ -59,7 +59,7 @@
         <table>
           <td class="d-flex align-items-start">
             <%= link_to user_path(post_comment.user) do %>
-            <%= image_tag post_comment.user.get_profile_image(30,30) %>
+            <%= image_tag post_comment.user.get_profile_image(30,30), size: "30x30", class: "rounded-circle" %>
             <% end %>
           </td>
           <td>
