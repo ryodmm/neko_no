@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :reject_freeze_user
+  before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def show
     @users = User.all
@@ -52,12 +53,20 @@ class Public::UsersController < ApplicationController
 
   def nonrelease
     @user = current_user
-    @user.nonreleased! unless @user.nonreleased?
+    @user.nonreleased! unless @user.nonreleased?    #unless文 → もしも、評価が偽(false)であれば○○する
     redirect_to request.referer, notice: 'このアカウントを非公開にしました'
   end
 
 
   private
+
+  def ensure_user
+    @user = User.find(params[:id])
+    if @user.id != current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to user_path(current_user)
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction, :email)

@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :reject_freeze_user
+  before_action :ensure_user, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -65,6 +66,14 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
+  def ensure_user
+    @post = Post.find(params[:id])
+    if @post.user.id != current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to user_path(current_user)
+    end
+  end
 
   def post_params
     params.require(:post).permit(:name, :image, :introduction, :user_id)
