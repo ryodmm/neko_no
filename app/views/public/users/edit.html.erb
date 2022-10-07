@@ -8,6 +8,19 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-3 offset-3">
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
   <div class="row pt-3">
     <div class="col-3 offset-2 d-flex justify-content-end">
       <%= f.label :プロフィール写真を変更 %>
