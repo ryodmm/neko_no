@@ -1,5 +1,5 @@
 class Admin::PostsController < ApplicationController
-
+  before_action :admin_scan
   def show
     @post = Post.find(params[:id])
   end

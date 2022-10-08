@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-
+  before_action :admin_scan
   def index
     @users = User.all
   end

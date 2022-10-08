@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :reject_freeze_user
+  before_action :authenticate_user!
   before_action :ensure_user, only: [:edit, :update, :unsubscribe, :withdrawal]
 
   def show

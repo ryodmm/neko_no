@@ -1,5 +1,5 @@
 class Admin::FreezesController < ApplicationController
-
+  before_action :admin_scan
   def create
     User.find(params[:user_id]).create_freeze
     redirect_to admin_user_freezes_path

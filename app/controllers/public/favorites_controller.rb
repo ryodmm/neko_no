@@ -1,5 +1,6 @@
 class Public::FavoritesController < ApplicationController
-
+  before_action :reject_freeze_user
+  before_action :authenticate_user!
   def create
     post = Post.find(params[:post_id])
     favorite = current_user.favorites.new(post_id: post.id)

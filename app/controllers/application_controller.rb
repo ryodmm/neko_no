@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: [:top]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def reject_freeze_user
@@ -16,6 +15,12 @@ class ApplicationController < ActionController::Base
           admin_users_path
       else
         posts_path
+      end
+    end
+
+    def admin_scan
+      if user_signed_in? && current_user.admin?
+       redirect_to root_path
       end
     end
 
