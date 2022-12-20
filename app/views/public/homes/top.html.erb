@@ -1,32 +1,48 @@
-<div class="row py-5"></div>
-<div class="row py-5 justify-content-center">
-  猫の集会所へようこそ！</br>
-  ここは猫好きが集まる猫好きのための集会所。</br>
-  あなたも猫の集会に参加しませんか？
-</div>
+<% content_for :scss do %>
+  <%= stylesheet_link_tag 'public/homes' %>
+<% end %>
 
-<div class="row pt-5">
-  <div class="col-3">
-    <div class="p-2 bd-highlight">
-      <%= link_to new_user_registration_path, class: "nav-link active" do %>
-        <button type="button" class="btn btn-success">初めての方はこちら</button>
-      <% end %>
-    </div>
+<div id="box">
+  <div id="images">
+    <div class="neko0"></div>
+    <div class="neko1"></div>
+    <div class="neko2"></div>
+    <div class="neko3"></div>
+    <div class="neko4"></div>
+    <div class="neko5"></div>
+    <div class="neko6"></div>
   </div>
 
-  <div class="col-3 offset-1">
-    <div class="p-2 bd-highlight">
-      <%= link_to user_session_path, class: "nav-link active" do %>
-        <button type="button" class="btn btn-primary">会員のかたはこちら</button>
-      <% end %>
-    </div>
+  <div class="row py-5"></div>
+  <div class="row py-5 justify-content-center">
+    猫の集会所へようこそ！</br>
+    ここは猫好きが集まる猫好きのための集会所。</br>
+    あなたも猫の集会に参加しませんか？
   </div>
 
-  <div class="col-3 offset-1">
-    <div class="p-2 bd-highlight">
-      <%= link_to users_guest_sign_in_path, method: :post, class: "nav-link active" do %>
-        <button type="button" class="btn btn-secondary">ゲストとして参加</button>
-      <% end %>
+  <div class="row pt-5">
+    <div class="col-3">
+      <div class="p-2 bd-highlight">
+        <%= link_to new_user_registration_path, class: "nav-link active" do %>
+          <button type="button" class="btn btn-success">初めての方はこちら</button>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-3 offset-1">
+      <div class="p-2 bd-highlight">
+        <%= link_to user_session_path, class: "nav-link active" do %>
+          <button type="button" class="btn btn-primary">会員のかたはこちら</button>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-3 offset-1">
+      <div class="p-2 bd-highlight">
+        <%= link_to users_guest_sign_in_path, method: :post, class: "nav-link active" do %>
+          <button type="button" class="btn btn-secondary">ゲストとして参加</button>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

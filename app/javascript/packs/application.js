@@ -6,9 +6,10 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
+import 'jquery'
+import "script.js"
+import "skippr.min";
 import "channels"
-
-import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"

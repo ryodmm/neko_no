@@ -1,3 +1,31 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import "skippr";
+
+ #images{
+  height: 500px;
+  background-size:  cover;
+}
+ .neko0 {
+  background-image: url('neko0.jpg');
+}
+.neko1 {
+  background-image: url(neko1.jpg);
+}
+.neko2 {
+  background-image: url(neko2.jpg);
+}
+.neko3 {
+  background-image: url(neko3.jpg);
+}
+.neko4 {
+  background-image: url(neko4.jpg);
+}
+.neko5 {
+  background-image: url(neko5.jpg);
+}
+.neko6 {
+  background-image: url(neko6.jpg);
+}

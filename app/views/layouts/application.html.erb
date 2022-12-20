@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>NekoNoShukaisho</title>
 
     <script src="https://kit.fontawesome.com/1fc108571b.js" crossorigin="anonymous"></script>
+     <meta charset="UTF-8"　/>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,11 +13,12 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield :scss %>
   </head>
 
   <body>
     <div class="image">
-    <div id="header" class="fixed-top border-bottom" style="height:80px;">
+    <div id="header" class="fixed-top border-bottom" style="height:80px; background-color: #ffffff;">
       <div class="container">
         <div class="row pt-2 d-flex align-items-center">
 
