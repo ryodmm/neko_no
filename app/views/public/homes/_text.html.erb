@@ -1,0 +1,25 @@
+<div class="text1">
+  <h3 class="d-flex justify-content-center">
+    猫の集会所へようこそ！</br>
+    ここは猫好きが集まる猫好きのための集会所。</br>
+    あなたも猫の集会に参加しませんか？
+  </h3>
+</div>
+
+<div class="button1">
+  <%= link_to new_user_registration_path, class: "nav-link active" do %>
+    <button type="button" class="btn btn-success">初めての方はこちら</button>
+  <% end %>
+</div>
+
+<div class="button2">
+  <%= link_to user_session_path, class: "nav-link active" do %>
+    <button type="button" class="btn btn-primary">会員のかたはこちら</button>
+  <% end %>
+</div>
+
+<div class="button3">
+  <%= link_to users_guest_sign_in_path, method: :post, class: "nav-link active" do %>
+    <button type="button" class="btn btn-secondary">ゲストとして参加</button>
+  <% end %>
+</div>

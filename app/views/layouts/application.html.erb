@@ -13,7 +13,6 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= yield :scss %>
   </head>
 
   <body>
@@ -61,7 +60,7 @@
     </div>
     </div>
 
-    <div style="padding-top:80px; margin-bottom:80px; height:100%">
+    <div style="padding-top:80px; padding-bottom:80px; height:100%">
       <div class="container">
         <%= yield %>
       </div>
