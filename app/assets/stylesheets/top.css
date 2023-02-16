@@ -5,43 +5,44 @@
   width: 100%;
 }
  .neko0 {
-  background-image: image-url("neko0.jpg");
+  background-image: url("../images/neko0.jpg");
   background-attachment: fixed;
   background-color:rgba(255,255,255,0.3);
   background-blend-mode: lighten;
 }
+
 .neko1 {
-  background-image: image-url("neko1.jpg");
+  background-image: url("../images/neko1.jpg");
   background-attachment: fixed;
   background-color:rgba(255,255,255,0.3);
   background-blend-mode: lighten;
 }
 .neko2 {
-  background-image: image-url("neko2.jpg");
+  background-image: url("../images/neko2.jpg");
   background-attachment: fixed;
   background-color:rgba(255,255,255,0.3);
   background-blend-mode: lighten;
 }
 .neko3 {
-  background-image: image-url("neko3.jpg");
+  background-image: url("../images/neko3.jpg");
   background-attachment: fixed;
   background-color:rgba(255,255,255,0.3);
   background-blend-mode: lighten;
 }
 .neko4 {
-  background-image: image-url("neko4.jpg");
+  background-image: url("../images/neko4.jpg");
   background-attachment: fixed;
   background-color:rgba(255,255,255,0.3);
   background-blend-mode: lighten;
 }
 .neko5 {
-  background-image: image-url("neko5.jpg");
+  background-image: url("../images/neko5.jpg");
   background-attachment: fixed;
   background-color:rgba(255,255,255,0.3);
   background-blend-mode: lighten;
 }
 .neko6 {
-  background-image: image-url("neko6.jpg");
+  background-image: url("../images/neko6.jpg");
   background-attachment: fixed;
   background-color:rgba(255,255,255,0.3);
   background-blend-mode: lighten;
