@@ -1,3 +1,4 @@
+/*global $*/
 $(document).ready(function () {
   $("#images").skippr({
     // スライドショーの変化 ("fade" or "slide")
