@@ -1,51 +1,54 @@
-@import "skippr";
-
- #box{
+#nekoimages{
+  position: relative;
   height: 100vh;
-  width: 100%;
 }
+
  .neko0 {
-  background-image: url("neko0.jpg");
-  background-attachment: fixed;
-  background-color:rgba(255,255,255,0.3);
-  background-blend-mode: lighten;
+  background-image: url(neko0.jpg);
+  background-size: cover;
+  background-position: center;
 }
+
 
 .neko1 {
-  background-image: url("neko1.jpg");
-  background-attachment: fixed;
-  background-color:rgba(255,255,255,0.3);
-  background-blend-mode: lighten;
+  background-image: url(neko1.jpg);
+  background-size: cover;
+  background-position: top center;
 }
+
 .neko2 {
-  background-image: url("neko2.jpg");
-  background-attachment: fixed;
-  background-color:rgba(255,255,255,0.3);
-  background-blend-mode: lighten;
+  background-image: url(neko2.jpg);
+  background-size: cover;
+  background-position: top center;
 }
+
 .neko3 {
-  background-image: url("neko3.jpg");
-  background-attachment: fixed;
-  background-color:rgba(255,255,255,0.3);
-  background-blend-mode: lighten;
+  background-image: url(neko3.jpg);
+  background-size: cover;
+  background-position: top center;
 }
+
 .neko4 {
-  background-image: url("neko4.jpg");
-  background-attachment: fixed;
-  background-color:rgba(255,255,255,0.3);
-  background-blend-mode: lighten;
+  background-image: url(neko4.jpg);
+  background-size: cover;
+  background-position: top center;
 }
+
 .neko5 {
-  background-image: url("neko5.jpg");
-  background-attachment: fixed;
-  background-color:rgba(255,255,255,0.3);
-  background-blend-mode: lighten;
+  background-image: url(neko5.jpg);
+  background-size: cover;
+  background-position: top center;
 }
+
 .neko6 {
   background-image: url("neko6.jpg");
-  background-attachment: fixed;
-  background-color:rgba(255,255,255,0.3);
-  background-blend-mode: lighten;
+  background-size: cover;
+  background-position: top center;
+}
+
+.touka{
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .text1 {
